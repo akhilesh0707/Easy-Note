@@ -7,3 +7,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "NoteApp"
 include ':app'
+include ':feature_note'
+include ':core'
