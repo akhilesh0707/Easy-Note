@@ -1,4 +1,4 @@
-package com.aqube.notes.ui.theme
+package com.aqube.notes.core.presentation.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
