@@ -7,7 +7,7 @@ import com.aqube.notes.feature_note.domain.util.OrderType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GetNoteUseCase(
+class GetNote(
     private val repository: NoteRepository
 ) {
     operator fun invoke(noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)): Flow<List<Note>> {
