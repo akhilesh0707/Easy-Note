@@ -3,8 +3,9 @@ package com.aqube.notes.di
 import com.aqube.notes.feature_note.data.data_source.NoteDatabase
 import com.aqube.notes.feature_note.data.repository.NoteRepositoryImpl
 import com.aqube.notes.feature_note.domain.repository.NoteRepository
-import com.aqube.notes.feature_note.domain.use_case.DeleteNoteUseCase
-import com.aqube.notes.feature_note.domain.use_case.GetNoteUseCase
+import com.aqube.notes.feature_note.domain.use_case.AddNote
+import com.aqube.notes.feature_note.domain.use_case.DeleteNote
+import com.aqube.notes.feature_note.domain.use_case.GetNote
 import com.aqube.notes.feature_note.domain.use_case.NoteUseCases
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,10 @@ object NoteModule {
     @Provides
     @Singleton
     fun provideNoteUseCases(noteRepository: NoteRepository): NoteUseCases {
-        return NoteUseCases(GetNoteUseCase(noteRepository), DeleteNoteUseCase(noteRepository))
+        return NoteUseCases(
+            AddNote(noteRepository),
+            GetNote(noteRepository),
+            DeleteNote(noteRepository)
+        )
     }
 }
