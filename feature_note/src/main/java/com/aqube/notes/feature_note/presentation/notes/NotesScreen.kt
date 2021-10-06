@@ -1,4 +1,4 @@
-package com.aqube.notes.feature_note.presentation.notes.components
+package com.aqube.notes.feature_note.presentation.notes
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
@@ -16,8 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.aqube.notes.feature_note.presentation.notes.NotesEvent
-import com.aqube.notes.feature_note.presentation.notes.NotesViewModel
+import com.aqube.notes.feature_note.presentation.notes.components.NoteItem
+import com.aqube.notes.feature_note.presentation.notes.components.OrderSection
+import com.aqube.notes.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @ExperimentalAnimationApi
@@ -33,16 +34,20 @@ fun NotesScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = {
-
+                navController.navigate(Screen.AddEditNoteScreen.route)
             }, backgroundColor = MaterialTheme.colors.primary) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
             }
         },
         scaffoldState = scaffoldState
     ) {
-        Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
             Row(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -59,7 +64,9 @@ fun NotesScreen(
                 exit = fadeOut() + slideOutVertically()
             ) {
                 OrderSection(
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
                     noteOrder = state.noteOrder,
                     onOrderChange = {
                         viewModel.onEvent(NotesEvent.Order(it))
@@ -71,15 +78,17 @@ fun NotesScreen(
                 items(state.notes) { note ->
                     NoteItem(
                         note = note,
-                        modifier = Modifier.fillMaxWidth().clickable { },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
-                                val result =scaffoldState.snackbarHostState.showSnackbar(
-                                    message="Note deleted",
+                                val result = scaffoldState.snackbarHostState.showSnackbar(
+                                    message = "Note deleted",
                                     actionLabel = "Undo",
                                 )
-                                if(result==SnackbarResult.ActionPerformed){
+                                if (result == SnackbarResult.ActionPerformed) {
                                     viewModel.onEvent(NotesEvent.RestoreNote)
                                 }
                             }
