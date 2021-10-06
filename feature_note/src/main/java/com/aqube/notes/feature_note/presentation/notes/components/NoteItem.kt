@@ -54,7 +54,10 @@ fun NoteItem(
                 )
             }
         }
-        Column(modifier = Modifier.fillMaxSize().padding(16.dp).padding(end = 32.dp)) {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .padding(end = 32.dp)) {
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.h6,
@@ -65,16 +68,19 @@ fun NoteItem(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = note.content,
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )
-
         }
 
         IconButton(onClick = onDeleteClick, modifier = Modifier.align(Alignment.BottomEnd)) {
-            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete note")
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "Delete note",
+                tint = MaterialTheme.colors.onSurface
+            )
         }
 
     }
