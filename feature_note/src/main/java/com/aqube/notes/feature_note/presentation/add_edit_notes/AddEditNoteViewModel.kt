@@ -3,6 +3,7 @@ package com.aqube.notes.feature_note.presentation.add_edit_notes
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aqube.notes.feature_note.domain.model.InvalidNoteException
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
-    private val noteUseCases: NoteUseCases
+    private val noteUseCases: NoteUseCases,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _noteTitle = mutableStateOf(NoteTextFieldState(hint = "Note title"))
     val title: State<NoteTextFieldState> = _noteTitle
@@ -30,7 +32,20 @@ class AddEditNoteViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private val currentNoteId: Int? = null
+    private var currentNoteId: Int? = null
+
+    init {
+        savedStateHandle.get<Int>("noteId")?.let { noteId ->
+            if (noteId != -1) {
+                viewModelScope.launch {
+                    noteUseCases.getNote(noteId)?.let {
+                        setFieldValues(it)
+                    }
+                }
+            }
+        }
+
+    }
 
     fun onEvent(event: AddEditNoteEvent) {
         when (event) {
@@ -79,5 +94,12 @@ class AddEditNoteViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun setFieldValues(note: Note) {
+        currentNoteId = note.id
+        _noteTitle.value = title.value.copy(text = note.title, isHintVisible = false)
+        _noteContent.value = content.value.copy(text = note.content, isHintVisible = false)
+        _noteColor.value = note.color
     }
 }
