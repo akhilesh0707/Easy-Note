@@ -2,6 +2,7 @@ package com.aqube.notes.feature_note.presentation.add_edit_notes.components
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -76,9 +77,7 @@ fun AddEditNoteScreen(
                 .padding(16.dp)
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             )
             {
@@ -87,16 +86,16 @@ fun AddEditNoteScreen(
                     Box(
                         modifier = Modifier
                             .size(50.dp)
-                            .shadow(15.dp, CircleShape)
+                            .shadow(10.dp)
                             .background(color)
                             .border(
-                                width = 3.dp,
+                                width = 1.dp,
                                 color = if (viewModel.color.value == colorInt)
                                     Color.Black
                                 else
                                     Color.Transparent,
-                                shape = CircleShape
-                            ).clickable {
+                            )
+                            .clickable {
                                 scope.launch {
                                     noteBackgroundAnimatable.animateTo(
                                         targetValue = Color(colorInt),
@@ -109,7 +108,7 @@ fun AddEditNoteScreen(
 
                 }
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(24.dp))
             TransparentHintTextField(
                 text = titleState.text,
                 hint = titleState.hint,
@@ -120,7 +119,7 @@ fun AddEditNoteScreen(
                 singleLine = true
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(24.dp))
             TransparentHintTextField(
                 text = contentState.text,
                 hint = contentState.hint,

@@ -3,7 +3,6 @@ package com.aqube.notes.feature_note.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.aqube.notes.core.presentation.theme.*
-import java.lang.Exception
 
 @Entity
 data class Note(
@@ -14,7 +13,8 @@ data class Note(
     val color: Int
 ) {
     companion object {
-        val noteColors = listOf(RedOrange, LightGreen, Violet, BabyBlue, RedPink)
+        val noteColors =
+            listOf(CanaryYellow, GorseGreen, RedOrange, LightGreen, BabyBlue, RedPink, ViolaRed)
     }
 }
 
