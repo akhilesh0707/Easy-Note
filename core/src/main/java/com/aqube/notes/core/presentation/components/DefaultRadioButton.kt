@@ -1,4 +1,4 @@
-package com.aqube.notes.feature_note.presentation.notes.components
+package com.aqube.notes.core.presentation.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

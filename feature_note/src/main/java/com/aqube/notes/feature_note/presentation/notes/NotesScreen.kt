@@ -47,14 +47,14 @@ fun NotesScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = "Your note", style = MaterialTheme.typography.h4)
+                Text(text = "My notes", style = MaterialTheme.typography.h4)
                 IconButton(
                     onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
                 ) {

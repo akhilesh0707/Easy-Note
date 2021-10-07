@@ -1,4 +1,4 @@
-package com.aqube.notes.feature_note.presentation.add_edit_notes.components
+package com.aqube.notes.core.presentation.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

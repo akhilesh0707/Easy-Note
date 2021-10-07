@@ -2,12 +2,10 @@ package com.aqube.notes.feature_note.presentation.add_edit_notes.components
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Save
@@ -22,6 +20,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.aqube.notes.core.presentation.components.TransparentHintTextField
 import com.aqube.notes.feature_note.domain.model.Note
 import com.aqube.notes.feature_note.presentation.add_edit_notes.AddEditNoteEvent
 import com.aqube.notes.feature_note.presentation.add_edit_notes.AddEditNoteViewModel
