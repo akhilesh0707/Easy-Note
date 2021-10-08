@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.aqube.notes.core.presentation.components.SearchTextField
 import com.aqube.notes.feature_note.presentation.notes.components.NoteItem
 import com.aqube.notes.feature_note.presentation.notes.components.OrderSection
 import com.aqube.notes.feature_note.presentation.util.Screen
@@ -40,8 +42,7 @@ fun NotesScreen(
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-    val keyboardController = LocalSoftwareKeyboardController.current
-    val stateField =remember { mutableStateOf(TextFieldValue("")) }
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -76,53 +77,10 @@ fun NotesScreen(
                     Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
                 }
             }
-            Spacer(modifier = Modifier.height(8.dp))
-            TextField(
-                value = stateField.value,
-                onValueChange = { value ->
-                    stateField.value = value
-                },
-                modifier = Modifier.fillMaxWidth(),
-                textStyle = TextStyle(color = MaterialTheme.colors.primarySurface, fontSize = 18.sp),
-                leadingIcon = {
-                    Icon(
-                        Icons.Default.Search,
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(24.dp)
 
-                    )
-                },
-                trailingIcon = {
-                    if (stateField.value != TextFieldValue("")) {
-                        IconButton(
-                            onClick = {
-                                stateField.value =
-                                    TextFieldValue("") // Remove text from TextField when you press the 'X' icon
-                            }
-                        ) {
-                            Icon(
-                                Icons.Default.Close,
-                                contentDescription = "",
-                                modifier = Modifier
-                                    .size(24.dp)
-                            )
-                        }
-                    }
-                },
-                singleLine = true,
-                shape = RectangleShape, // The TextFiled has rounded corners top left and right by default
-                colors = TextFieldDefaults.textFieldColors(
-                    textColor = MaterialTheme.colors.primarySurface,
-                    cursorColor = MaterialTheme.colors.primarySurface,
-                    leadingIconColor = MaterialTheme.colors.primarySurface,
-                    trailingIconColor = MaterialTheme.colors.primarySurface,
-                    backgroundColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent
-                )
-            )
+            Spacer(modifier = Modifier.height(8.dp))
+            SearchTextField()
+
             AnimatedVisibility(
                 visible = state.isOrderSectionVisible,
                 enter = fadeIn() + slideInVertically(),
