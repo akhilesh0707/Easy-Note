@@ -1,6 +1,7 @@
 package com.aqube.notes.feature_note.presentation.notes
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,13 +9,20 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Sort
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aqube.notes.feature_note.presentation.notes.components.NoteItem
@@ -22,6 +30,7 @@ import com.aqube.notes.feature_note.presentation.notes.components.OrderSection
 import com.aqube.notes.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
+@ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
 fun NotesScreen(
@@ -31,7 +40,8 @@ fun NotesScreen(
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val stateField =remember { mutableStateOf(TextFieldValue("")) }
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -55,17 +65,68 @@ fun NotesScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = "My notes", style = MaterialTheme.typography.h4)
+                Text(
+                    text = "My notes",
+                    style = MaterialTheme.typography.h4,
+                    color = MaterialTheme.colors.primaryVariant
+                )
                 IconButton(
                     onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
                 ) {
                     Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
                 }
             }
+            Spacer(modifier = Modifier.height(8.dp))
+            TextField(
+                value = stateField.value,
+                onValueChange = { value ->
+                    stateField.value = value
+                },
+                modifier = Modifier.fillMaxWidth(),
+                textStyle = TextStyle(color = MaterialTheme.colors.primarySurface, fontSize = 18.sp),
+                leadingIcon = {
+                    Icon(
+                        Icons.Default.Search,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .size(24.dp)
+
+                    )
+                },
+                trailingIcon = {
+                    if (stateField.value != TextFieldValue("")) {
+                        IconButton(
+                            onClick = {
+                                stateField.value =
+                                    TextFieldValue("") // Remove text from TextField when you press the 'X' icon
+                            }
+                        ) {
+                            Icon(
+                                Icons.Default.Close,
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(24.dp)
+                            )
+                        }
+                    }
+                },
+                singleLine = true,
+                shape = RectangleShape, // The TextFiled has rounded corners top left and right by default
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = MaterialTheme.colors.primarySurface,
+                    cursorColor = MaterialTheme.colors.primarySurface,
+                    leadingIconColor = MaterialTheme.colors.primarySurface,
+                    trailingIconColor = MaterialTheme.colors.primarySurface,
+                    backgroundColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                )
+            )
             AnimatedVisibility(
                 visible = state.isOrderSectionVisible,
                 enter = fadeIn() + slideInVertically(),
-                exit = fadeOut() + slideOutVertically()
+                exit = fadeOut() + slideOutVertically(),
             ) {
                 OrderSection(
                     modifier = Modifier
