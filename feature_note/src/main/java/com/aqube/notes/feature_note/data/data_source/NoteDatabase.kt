@@ -7,6 +7,7 @@ import com.aqube.notes.feature_note.domain.model.Note
 @Database(
     entities = [Note::class],
     version = 1,
+    exportSchema = true
 )
 abstract class NoteDatabase : RoomDatabase() {
     abstract val noteDao: NoteDao

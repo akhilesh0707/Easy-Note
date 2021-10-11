@@ -38,6 +38,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
     }
     compileOptions {
@@ -87,7 +88,7 @@ dependencies {
     implementation(Coroutines.coroutineCore)
     implementation(Coroutines.coroutineAndroid)
 
-    //Dagger - Hilt
+    // Dagger - Hilt
     implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltAndroidCompiler)
 
