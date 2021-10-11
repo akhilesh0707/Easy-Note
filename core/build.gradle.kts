@@ -8,6 +8,14 @@ plugins {
 
 android {
     compileSdk = Config.Android.compileSdk
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Compose.composeVersion
+    }
 }
 
 dependencies {
