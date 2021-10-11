@@ -5,7 +5,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "NoteApp"
-include ':app'
-include ':feature_note'
-include ':core'
+rootProject.name = "Easy Notes"
+include(":app")
+include(":feature_note")
+include(":core")
