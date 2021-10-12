@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -43,7 +44,7 @@ fun NotesScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add new note")
             }
         },
         scaffoldState = scaffoldState
@@ -66,22 +67,33 @@ fun NotesScreen(
                 IconButton(
                     onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
                 ) {
-                    Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
+                    Icon(imageVector = Icons.Default.Settings, contentDescription = "Settings")
                 }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
-
-            SearchTextField(
-                text = noteSearchState.text,
-                hint = noteSearchState.hint,
-                onValueChange = { viewModel.onEvent(NotesEvent.EnteredSearch(it)) },
-                onFocusChange = { viewModel.onEvent(NotesEvent.ChangeSearchFocus(it)) },
-                onTextChange = { viewModel.onEvent(NotesEvent.EnteredSearch(it)) },
-                isHintVisible = noteSearchState.isHintVisible,
-                textStyle = MaterialTheme.typography.body1,
-                singleLine = true
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                SearchTextField(
+                    text = noteSearchState.text,
+                    hint = noteSearchState.hint,
+                    onValueChange = { viewModel.onEvent(NotesEvent.EnteredSearch(it)) },
+                    onFocusChange = { viewModel.onEvent(NotesEvent.ChangeSearchFocus(it)) },
+                    onTextChange = { viewModel.onEvent(NotesEvent.EnteredSearch(it)) },
+                    isHintVisible = noteSearchState.isHintVisible,
+                    textStyle = MaterialTheme.typography.body1,
+                    widthPercentage = 0.85f,
+                    singleLine = true
+                )
+                IconButton(
+                    onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
+                ) {
+                    Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
+                }
+            }
 
             AnimatedVisibility(
                 visible = state.isOrderSectionVisible,

@@ -34,7 +34,8 @@ fun SearchTextField(
     onTextChange: (String) -> Unit,
     textStyle: TextStyle = TextStyle(),
     singleLine: Boolean = false,
-    onFocusChange: (FocusState) -> Unit
+    onFocusChange: (FocusState) -> Unit,
+    widthPercentage: Float = 1f
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     Box(
@@ -44,14 +45,16 @@ fun SearchTextField(
             value = text,
             onValueChange = onValueChange,
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(widthPercentage)
                 .onFocusChanged { onFocusChange(it) },
             textStyle = textStyle,
             leadingIcon = {
                 Icon(
                     Icons.Default.Search,
                     contentDescription = "",
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(0.dp),
                     tint = Color.DarkGray
                 )
             },
@@ -67,7 +70,8 @@ fun SearchTextField(
                             Icons.Default.Close,
                             contentDescription = "",
                             modifier = Modifier
-                                .size(24.dp),
+                                .size(24.dp)
+                                .padding(0.dp),
                             tint = Color.DarkGray
                         )
                     }
