@@ -8,6 +8,7 @@ import com.aqube.notes.feature_note.domain.model.Note
 import com.aqube.notes.feature_note.domain.use_case.NoteUseCases
 import com.aqube.notes.feature_note.domain.util.NoteOrder
 import com.aqube.notes.feature_note.domain.util.OrderType
+import com.aqube.notes.feature_note.presentation.add_edit_notes.NoteTextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
@@ -22,6 +23,10 @@ class NotesViewModel @Inject constructor(
 ) : ViewModel() {
     private val _states = mutableStateOf(NotesState())
     val state: State<NotesState> = _states
+
+    private val _noteSearch = mutableStateOf(NoteTextFieldState(hint = "Search"))
+    val search: State<NoteTextFieldState> = _noteSearch
+
     private var recentlyDeletedNote: Note? = null
     private var getNoteJob: Job? = null
 
@@ -45,15 +50,25 @@ class NotesViewModel @Inject constructor(
                     recentlyDeletedNote = event.note
                 }
             }
-            NotesEvent.RestoreNote -> {
+            is NotesEvent.RestoreNote -> {
                 viewModelScope.launch {
                     noteUseCases.addNote(recentlyDeletedNote ?: return@launch)
                     recentlyDeletedNote = null
                 }
             }
-            NotesEvent.ToggleOrderSelection -> {
+            is NotesEvent.ToggleOrderSelection -> {
                 _states.value = state.value.copy(
                     isOrderSectionVisible = !state.value.isOrderSectionVisible
+                )
+            }
+            is NotesEvent.EnteredSearch -> {
+                _noteSearch.value = search.value.copy(
+                    text = event.value
+                )
+            }
+            is NotesEvent.ChangeSearchFocus -> {
+                _noteSearch.value = search.value.copy(
+                    isHintVisible = !event.focusState.isFocused && search.value.text.isBlank()
                 )
             }
         }
