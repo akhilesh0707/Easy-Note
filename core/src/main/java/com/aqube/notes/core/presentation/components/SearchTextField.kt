@@ -38,9 +38,7 @@ fun SearchTextField(
     widthPercentage: Float = 1f
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    Box(
-        modifier = modifier,
-    ) {
+    Box(modifier) {
         TextField(
             value = text,
             onValueChange = onValueChange,
