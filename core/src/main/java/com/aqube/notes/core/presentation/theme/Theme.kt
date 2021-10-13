@@ -47,7 +47,7 @@ private val DarkColorPalette = darkColors(
 fun NoteAppTheme(darkTheme: Boolean = false, content: @Composable() () -> Unit) {
     MaterialTheme(
         colors = if (darkTheme) DarkColorPalette else LightColorPalette,
-        typography = Typography,
+        typography = QuickSandTypography,
         shapes = Shapes,
         content = content
     )
