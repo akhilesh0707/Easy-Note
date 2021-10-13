@@ -114,7 +114,7 @@ fun AddEditNoteScreen(
                 onValueChange = { viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it)) },
                 onFocusChange = { viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it)) },
                 isHintVisible = titleState.isHintVisible,
-                textStyle = MaterialTheme.typography.h5,
+                textStyle = MaterialTheme.typography.h3,
                 singleLine = true
             )
 

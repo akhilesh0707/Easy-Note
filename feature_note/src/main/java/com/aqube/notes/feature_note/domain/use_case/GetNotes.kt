@@ -10,7 +10,10 @@ import kotlinx.coroutines.flow.map
 class GetNotes(
     private val repository: NoteRepository
 ) {
-    operator fun invoke(noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)): Flow<List<Note>> {
+    operator fun invoke(
+        noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
+        query: String
+    ): Flow<List<Note>> {
         return repository.getNotes().map { notes ->
             when (noteOrder.orderType) {
                 is OrderType.Ascending -> {

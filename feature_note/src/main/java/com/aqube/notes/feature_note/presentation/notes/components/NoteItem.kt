@@ -60,7 +60,7 @@ fun NoteItem(
             .padding(end = 32.dp)) {
             Text(
                 text = note.title,
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.h3,
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis

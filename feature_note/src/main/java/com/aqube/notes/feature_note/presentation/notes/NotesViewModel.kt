@@ -71,12 +71,22 @@ class NotesViewModel @Inject constructor(
                     isHintVisible = !event.focusState.isFocused && search.value.text.isBlank()
                 )
             }
+            is NotesEvent.SearchNotes -> {
+                if (event.value.isNullOrEmpty()) {
+                    getNotes(NoteOrder.Date(OrderType.Descending))
+                    _noteSearch.value = search.value.copy(
+                        text = event.value
+                    )
+                } else {
+                    getNotes(NoteOrder.Date(OrderType.Descending),event.value)
+                }
+            }
         }
     }
 
-    private fun getNotes(noteOrder: NoteOrder) {
+    private fun getNotes(noteOrder: NoteOrder, query: String = "") {
         getNoteJob?.cancel()
-        getNoteJob = noteUseCases.getNotes(noteOrder).onEach { notes ->
+        getNoteJob = noteUseCases.getNotes(noteOrder, query).onEach { notes ->
             _states.value = state.value.copy(
                 notes = notes,
                 noteOrder = noteOrder

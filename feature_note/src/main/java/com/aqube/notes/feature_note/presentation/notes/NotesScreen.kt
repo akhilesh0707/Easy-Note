@@ -61,7 +61,7 @@ fun NotesScreen(
             ) {
                 Text(
                     text = "My notes",
-                    style = MaterialTheme.typography.h4,
+                    style = MaterialTheme.typography.h1,
                     color = MaterialTheme.colors.primaryVariant
                 )
                 IconButton(
@@ -81,7 +81,7 @@ fun NotesScreen(
                     hint = noteSearchState.hint,
                     onValueChange = { viewModel.onEvent(NotesEvent.EnteredSearch(it)) },
                     onFocusChange = { viewModel.onEvent(NotesEvent.ChangeSearchFocus(it)) },
-                    onTextChange = { viewModel.onEvent(NotesEvent.EnteredSearch(it)) },
+                    onTextChange = { viewModel.onEvent(NotesEvent.SearchNotes(it)) },
                     isHintVisible = noteSearchState.isHintVisible,
                     textStyle = MaterialTheme.typography.body1,
                     widthPercentage = 0.85f,

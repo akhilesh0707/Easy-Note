@@ -6,6 +6,7 @@ import com.aqube.notes.feature_note.domain.util.NoteOrder
 
 sealed class NotesEvent {
     data class EnteredSearch(val value: String) : NotesEvent()
+    data class SearchNotes(val value: String) : NotesEvent()
     data class ChangeSearchFocus(val focusState: FocusState) : NotesEvent()
     data class Order(val noteOrder: NoteOrder) : NotesEvent()
     data class DeleteNote(val note: Note) : NotesEvent()
