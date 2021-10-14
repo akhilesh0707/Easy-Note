@@ -78,6 +78,7 @@ fun SearchTextField(
             singleLine = singleLine,
             shape = RoundedCornerShape(16.dp),
             colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
                 backgroundColor = Color.White,
                 cursorColor = Color.Black,
                 disabledLabelColor = Color.Transparent,
