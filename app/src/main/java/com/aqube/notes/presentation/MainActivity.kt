@@ -18,6 +18,7 @@ import com.aqube.notes.feature_note.domain.use_case.NoteUseCases
 import com.aqube.notes.feature_note.presentation.add_edit_notes.components.AddEditNoteScreen
 import com.aqube.notes.feature_note.presentation.notes.NotesScreen
 import com.aqube.notes.feature_note.presentation.util.Screen
+import com.aqube.notes.feature_settings.presentation.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -57,6 +58,9 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val color = it.arguments?.getInt("noteColor") ?: -1
                             AddEditNoteScreen(navController = navController, noteColor = color)
+                        }
+                        composable(route = Screen.SettingsScreen.route) {
+                            SettingsScreen(navController = navController)
                         }
                     }
                 }

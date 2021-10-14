@@ -65,7 +65,7 @@ fun NotesScreen(
                     color = MaterialTheme.colors.primaryVariant
                 )
                 IconButton(
-                    onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
+                    onClick = { navController.navigate(Screen.SettingsScreen.route) }
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_settings),
