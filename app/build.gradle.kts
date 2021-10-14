@@ -66,6 +66,7 @@ dependencies {
     // Modules
     implementation(project(Modules.core))
     implementation(project(Modules.featureNote))
+    implementation(project(Modules.featureSettings))
 
     // AndroidX dependencies
     implementation(AndroidX.coreKtx)

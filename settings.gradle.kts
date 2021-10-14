@@ -7,5 +7,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Easy Notes"
 include(":app")
-include(":feature_note")
 include(":core")
+include(":feature_note")
+include(":feature_settings")
