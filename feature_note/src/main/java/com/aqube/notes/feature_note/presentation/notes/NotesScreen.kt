@@ -1,5 +1,6 @@
 package com.aqube.notes.feature_note.presentation.notes
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -65,7 +66,10 @@ fun NotesScreen(
                     color = MaterialTheme.colors.primaryVariant
                 )
                 IconButton(
-                    onClick = { navController.navigate(Screen.SettingsScreen.route) }
+                    onClick = {
+                        setTheme(false)
+                        //navController.navigate(Screen.SettingsScreen.route)
+                        }
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_settings),
@@ -151,5 +155,23 @@ fun NotesScreen(
         }
     }
 }
+
+
+private fun setTheme(darkMode: Boolean) {
+    !darkMode
+    if (darkMode) {
+        setLightTheme()
+    } else
+        setDarkTheme()
+}
+
+private fun setLightTheme() {
+    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+}
+
+private fun setDarkTheme() {
+    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+}
+
 
 

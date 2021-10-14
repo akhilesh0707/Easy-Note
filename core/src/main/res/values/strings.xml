@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_dark_mode">Dark mode</string>
+    <string name="label_light_mode">Light mode</string>
+
+</resources>

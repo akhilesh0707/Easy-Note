@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
     lateinit var useCases: NoteUseCases
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("", "Hello")
         setContent {
             NoteAppTheme {
                 Surface(color = MaterialTheme.colors.background) {
