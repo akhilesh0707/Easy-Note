@@ -14,7 +14,12 @@ class GetNotes(
         noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
         query: String
     ): Flow<List<Note>> {
-        return repository.getNotes().map { notes ->
+        val noteList = if (query.isNullOrEmpty())
+            repository.getNotes()
+        else
+            repository.getSearchNotes(query)
+
+        return noteList.map { notes ->
             when (noteOrder.orderType) {
                 is OrderType.Ascending -> {
                     when (noteOrder) {

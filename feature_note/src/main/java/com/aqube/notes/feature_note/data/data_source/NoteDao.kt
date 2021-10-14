@@ -9,6 +9,9 @@ interface NoteDao {
     @Query("SELECT * FROM note")
     fun getNotes(): Flow<List<Note>>
 
+    @Query("SELECT * FROM note WHERE title LIKE '%' || :query  || '%' OR content LIKE '%' || :query  || '%'")
+    fun getSearchNotes(query: String): Flow<List<Note>>
+
     @Query("SELECT * FROM note WHERE id=:id")
     suspend fun getNoteById(id: Int): Note?
 

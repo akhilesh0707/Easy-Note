@@ -8,16 +8,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.aqube.notes.core.R
 import com.aqube.notes.core.presentation.components.SearchTextField
 import com.aqube.notes.feature_note.presentation.notes.components.NoteItem
 import com.aqube.notes.feature_note.presentation.notes.components.OrderSection
@@ -67,12 +67,18 @@ fun NotesScreen(
                 IconButton(
                     onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
                 ) {
-                    Icon(imageVector = Icons.Default.Settings, contentDescription = "Settings")
+                    Icon(
+                        painter = painterResource(R.drawable.ic_settings),
+                        modifier = Modifier.size(24.dp),
+                        contentDescription = "Settings"
+                    )
                 }
             }
 
             Row(
-                modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -90,7 +96,11 @@ fun NotesScreen(
                 IconButton(
                     onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
                 ) {
-                    Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
+                    Icon(
+                        painter = painterResource(R.drawable.ic_filter),
+                        modifier = Modifier.size(24.dp),
+                        contentDescription = "Sort"
+                    )
                 }
             }
 

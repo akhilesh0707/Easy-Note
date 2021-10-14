@@ -7,8 +7,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -17,10 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aqube.notes.core.presentation.components.TransparentHintTextField
+import com.aqube.notes.feature_note.R
 import com.aqube.notes.feature_note.domain.model.Note
 import com.aqube.notes.feature_note.presentation.add_edit_notes.AddEditNoteEvent
 import com.aqube.notes.feature_note.presentation.add_edit_notes.AddEditNoteViewModel
@@ -64,7 +64,11 @@ fun AddEditNoteScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
+                Icon(
+                    painter = painterResource(R.drawable.ic_save),
+                    modifier = Modifier.size(24.dp),
+                    contentDescription = "Save note"
+                )
             }
         },
         scaffoldState = scaffoldState

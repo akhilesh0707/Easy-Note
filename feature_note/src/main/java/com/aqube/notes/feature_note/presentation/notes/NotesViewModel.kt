@@ -29,6 +29,7 @@ class NotesViewModel @Inject constructor(
 
     private var recentlyDeletedNote: Note? = null
     private var getNoteJob: Job? = null
+    private var searchQuery: String = ""
 
     init {
         getNotes(NoteOrder.Date(OrderType.Descending))
@@ -42,7 +43,7 @@ class NotesViewModel @Inject constructor(
                 ) {
                     return
                 }
-                getNotes(event.noteOrder)
+                getNotes(event.noteOrder, searchQuery)
             }
             is NotesEvent.DeleteNote -> {
                 viewModelScope.launch {
@@ -78,7 +79,8 @@ class NotesViewModel @Inject constructor(
                         text = event.value
                     )
                 } else {
-                    getNotes(NoteOrder.Date(OrderType.Descending),event.value)
+                    searchQuery = event.value
+                    getNotes(NoteOrder.Date(OrderType.Descending), searchQuery)
                 }
             }
         }
