@@ -17,7 +17,8 @@ import com.aqube.notes.core.presentation.components.DarkModeToggleButton
 @Composable
 fun SettingsScreen(
     navController: NavController,
-    viewModel: SettingsViewModel = hiltViewModel()
+    viewModel: SettingsViewModel = hiltViewModel(),
+    onToggleTheme: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -33,7 +34,9 @@ fun SettingsScreen(
         )
         DarkModeToggleButton(
             darkMode = viewModel.darkMode,
-            onDarkModeChanged = { viewModel.darkMode = it },
+            onDarkModeChanged = {
+                onToggleTheme()
+            },
             modifier = Modifier.weight(1f)
         )
     }

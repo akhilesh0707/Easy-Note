@@ -1,7 +1,6 @@
 package com.aqube.notes.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -13,8 +12,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.aqube.notes.NoteApplication
 import com.aqube.notes.core.presentation.theme.NoteAppTheme
-import com.aqube.notes.feature_note.domain.use_case.NoteUseCases
 import com.aqube.notes.feature_note.presentation.add_edit_notes.components.AddEditNoteScreen
 import com.aqube.notes.feature_note.presentation.notes.NotesScreen
 import com.aqube.notes.feature_note.presentation.util.Screen
@@ -26,12 +25,14 @@ import javax.inject.Inject
 @ExperimentalAnimationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     @Inject
-    lateinit var useCases: NoteUseCases
+    lateinit var application: NoteApplication
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NoteAppTheme {
+            NoteAppTheme(darkTheme = application.isDark.value) {
                 Surface(color = MaterialTheme.colors.background) {
                     val navController = rememberNavController()
                     NavHost(
@@ -59,7 +60,10 @@ class MainActivity : ComponentActivity() {
                             AddEditNoteScreen(navController = navController, noteColor = color)
                         }
                         composable(route = Screen.SettingsScreen.route) {
-                            SettingsScreen(navController = navController)
+                            SettingsScreen(
+                                navController = navController,
+                                onToggleTheme = application::toggleLightTheme
+                            )
                         }
                     }
                 }
