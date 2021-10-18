@@ -1,9 +1,12 @@
 import dependencies.AndroidX
 import dependencies.Compose
+import dependencies.DaggerHilt
 
 plugins {
     id(Config.Plugins.androidLibrary)
     id(Config.Plugins.kotlinAndroid)
+    id(Config.Plugins.kotlinKapt)
+    id(Config.Plugins.daggerHiltAndroid)
 }
 
 android {
@@ -30,4 +33,8 @@ dependencies {
     implementation(Compose.material)
     implementation(Compose.toolingPreview)
     implementation(Compose.materialIconExtended)
+
+    // Dagger - Hilt
+    implementation(DaggerHilt.hiltAndroid)
+    kapt(DaggerHilt.hiltAndroidCompiler)
 }
