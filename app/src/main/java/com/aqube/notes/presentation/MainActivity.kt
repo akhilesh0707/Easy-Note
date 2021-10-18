@@ -4,15 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.aqube.notes.NoteApplication
+import com.aqube.notes.core.domain.model.AppTheme
+import com.aqube.notes.core.domain.repository.ThemeSettings
 import com.aqube.notes.core.presentation.theme.NoteAppTheme
 import com.aqube.notes.feature_note.presentation.add_edit_notes.components.AddEditNoteScreen
 import com.aqube.notes.feature_note.presentation.notes.NotesScreen
@@ -27,12 +31,13 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var application: NoteApplication
+    lateinit var themeSettings: ThemeSettings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NoteAppTheme(darkTheme = application.isDark.value) {
+            val isDarkTheme = getSavedTheme()
+            NoteAppTheme(darkTheme = isDarkTheme) {
                 Surface(color = MaterialTheme.colors.background) {
                     val navController = rememberNavController()
                     NavHost(
@@ -61,13 +66,28 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = Screen.SettingsScreen.route) {
                             SettingsScreen(
+                                darkTheme = isDarkTheme,
                                 navController = navController,
-                                onToggleTheme = application::toggleLightTheme
+                                onToggleTheme = { appTheme ->
+                                    themeSettings.theme = appTheme
+                                }
                             )
                         }
                     }
                 }
             }
         }
+    }
+
+    //TODO moved this to viewmodel
+    @Composable
+    private fun getSavedTheme(): Boolean {
+        val savedTheme = themeSettings.themeStream.collectAsState()
+        val isDarkTheme = when (savedTheme.value) {
+            AppTheme.MODE_AUTO -> isSystemInDarkTheme()
+            AppTheme.MODE_DAY -> false
+            AppTheme.MODE_NIGHT -> true
+        }
+        return isDarkTheme
     }
 }
