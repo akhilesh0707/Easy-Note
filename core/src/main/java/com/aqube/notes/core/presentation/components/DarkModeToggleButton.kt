@@ -22,7 +22,6 @@ fun DarkModeToggleButton(
     onDarkModeChanged: (Boolean) -> Unit,
     modifier: Modifier
 ) {
-    setTheme(true)
     IconButton(onClick = { onDarkModeChanged(!darkMode) }) {
         val color by animateColorAsState(targetValue = MaterialTheme.colors.onSurface)
         val iconModifier = Modifier.size(24.dp)
@@ -41,20 +40,4 @@ fun DarkModeToggleButton(
             )
         }
     }
-}
-
-
-private fun setTheme(darkMode: Boolean) {
-    if (darkMode) {
-        setLightTheme()
-    } else
-        setDarkTheme()
-}
-
-private fun setLightTheme() {
-    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-}
-
-private fun setDarkTheme() {
-    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 }

@@ -19,7 +19,7 @@ private val LightColorPalette = lightColors(
     background = Gray,
     onBackground = Color.Black,
     surface = Color.White,
-    onSurface = BlackDark,
+    onSurface = Color.DarkGray,
 )
 
 private val DarkColorPalette = darkColors(
@@ -32,9 +32,8 @@ private val DarkColorPalette = darkColors(
     background = Color.Black,
     onBackground = BlackDark,
     surface = BlackLight,
-    onSurface = BlackDark,
+    onSurface = Color.DarkGray,
 )
-
 
 @Composable
 fun NoteAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
