@@ -3,6 +3,7 @@ package com.aqube.notes.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -16,22 +17,19 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.aqube.notes.core.domain.model.AppTheme
-import com.aqube.notes.core.domain.repository.ThemeSettings
 import com.aqube.notes.core.presentation.theme.NoteAppTheme
 import com.aqube.notes.feature_note.presentation.add_edit_notes.components.AddEditNoteScreen
 import com.aqube.notes.feature_note.presentation.notes.NotesScreen
 import com.aqube.notes.feature_note.presentation.util.Screen
 import com.aqube.notes.feature_settings.presentation.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var themeSettings: ThemeSettings
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +67,7 @@ class MainActivity : ComponentActivity() {
                                 darkTheme = isDarkTheme,
                                 navController = navController,
                                 onToggleTheme = { appTheme ->
-                                    themeSettings.theme = appTheme
+                                    viewModel.updateTheme(appTheme)
                                 }
                             )
                         }
@@ -79,10 +77,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    //TODO moved this to viewmodel
     @Composable
     private fun getSavedTheme(): Boolean {
-        val savedTheme = themeSettings.themeStream.collectAsState()
+        val savedTheme = viewModel.getThemeState().collectAsState()
         val isDarkTheme = when (savedTheme.value) {
             AppTheme.MODE_AUTO -> isSystemInDarkTheme()
             AppTheme.MODE_DAY -> false
@@ -90,4 +87,5 @@ class MainActivity : ComponentActivity() {
         }
         return isDarkTheme
     }
+
 }
