@@ -1,7 +1,7 @@
 package dependencies
 
 object Compose {
-    const val composeVersion = "1.0.3"
+    const val composeVersion = "1.0.4"
 
     const val compiler = "androidx.compose.compiler:compiler:$composeVersion"
     const val ui = "androidx.compose.ui:ui:$composeVersion"
