@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aqube.notes">
 
-
     <application
         android:name=".NoteApplication"
         android:allowBackup="true"
@@ -10,12 +9,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CleanArchitectureNoteApp">
+        android:theme="@style/Theme.EasyNote">
+
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.CleanArchitectureNoteApp">
+            android:theme="@style/Theme.EasyNote.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,6 +23,5 @@
             </intent-filter>
         </activity>
     </application>
-
 
 </manifest>

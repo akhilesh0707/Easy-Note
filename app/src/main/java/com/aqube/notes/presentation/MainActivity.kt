@@ -8,15 +8,14 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.aqube.notes.core.domain.model.AppTheme
 import com.aqube.notes.core.presentation.theme.NoteAppTheme
 import com.aqube.notes.feature_note.presentation.add_edit_notes.components.AddEditNoteScreen
 import com.aqube.notes.feature_note.presentation.notes.NotesScreen
@@ -34,7 +33,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val isDarkTheme = getSavedTheme()
+
+            // check UI mode
+            val isDarkTheme by viewModel.getTheme().collectAsState(initial = isSystemInDarkTheme())
             NoteAppTheme(darkTheme = isDarkTheme) {
                 Surface(color = MaterialTheme.colors.background) {
                     val navController = rememberNavController()
@@ -75,17 +76,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    @Composable
-    private fun getSavedTheme(): Boolean {
-        val savedTheme = viewModel.getThemeState().collectAsState()
-        val isDarkTheme = when (savedTheme.value) {
-            AppTheme.MODE_AUTO -> isSystemInDarkTheme()
-            AppTheme.MODE_DAY -> false
-            AppTheme.MODE_NIGHT -> true
-        }
-        return isDarkTheme
     }
 
 }

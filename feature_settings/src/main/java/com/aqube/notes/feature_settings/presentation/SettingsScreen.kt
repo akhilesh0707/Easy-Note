@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.aqube.notes.core.domain.model.AppTheme
 import com.aqube.notes.core.presentation.components.DarkModeToggleButton
 
 @Composable
@@ -17,7 +16,7 @@ fun SettingsScreen(
     navController: NavController,
     viewModel: SettingsViewModel = hiltViewModel(),
     darkTheme: Boolean,
-    onToggleTheme: (AppTheme) -> Unit
+    onToggleTheme: (Boolean) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -34,13 +33,12 @@ fun SettingsScreen(
             Text(
                 text = "Dark theme",
                 style = MaterialTheme.typography.h5,
-                color = MaterialTheme.colors.primaryVariant
+                color = MaterialTheme.colors.onPrimary
             )
             DarkModeToggleButton(
                 darkMode = darkTheme,
                 onDarkModeChanged = { toggleValue ->
-                    val isDarkTheme = if (toggleValue) AppTheme.MODE_NIGHT else AppTheme.MODE_DAY
-                    onToggleTheme(isDarkTheme)
+                    onToggleTheme(toggleValue)
                 },
                 modifier = Modifier.weight(1f)
             )
