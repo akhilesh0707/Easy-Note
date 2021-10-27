@@ -13,6 +13,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,8 +42,7 @@ fun NotesScreen(
             FloatingActionButton(
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
-                },
-                backgroundColor = MaterialTheme.colors.primary
+                }
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add new note")
             }
@@ -62,14 +62,13 @@ fun NotesScreen(
                 Text(
                     text = "My notes",
                     style = MaterialTheme.typography.h1,
-                    color = MaterialTheme.colors.primaryVariant
                 )
                 IconButton(
                     onClick = { navController.navigate(Screen.SettingsScreen.route) }
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_settings),
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(26.dp),
                         contentDescription = "Settings"
                     )
                 }
@@ -93,7 +92,7 @@ fun NotesScreen(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_filter),
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(28.dp),
                         contentDescription = "Sort"
                     )
                 }
