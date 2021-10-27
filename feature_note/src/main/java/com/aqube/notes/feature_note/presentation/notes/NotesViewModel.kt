@@ -24,12 +24,11 @@ class NotesViewModel @Inject constructor(
     private val _states = mutableStateOf(NotesState())
     val state: State<NotesState> = _states
 
-    private val _noteSearch = mutableStateOf(NoteTextFieldState(hint = "Search"))
+    private val _noteSearch = mutableStateOf(NoteTextFieldState(hint = "Search Notes"))
     val search: State<NoteTextFieldState> = _noteSearch
 
     private var recentlyDeletedNote: Note? = null
     private var getNoteJob: Job? = null
-    private var searchQuery: String = ""
 
     init {
         getNotes(NoteOrder.Date(OrderType.Descending))
@@ -43,7 +42,7 @@ class NotesViewModel @Inject constructor(
                 ) {
                     return
                 }
-                getNotes(event.noteOrder, searchQuery)
+                getNotes(event.noteOrder)
             }
             is NotesEvent.DeleteNote -> {
                 viewModelScope.launch {
@@ -62,16 +61,6 @@ class NotesViewModel @Inject constructor(
                     isOrderSectionVisible = !state.value.isOrderSectionVisible
                 )
             }
-            is NotesEvent.EnteredSearch -> {
-                _noteSearch.value = search.value.copy(
-                    text = event.value
-                )
-            }
-            is NotesEvent.ChangeSearchFocus -> {
-                _noteSearch.value = search.value.copy(
-                    isHintVisible = !event.focusState.isFocused && search.value.text.isBlank()
-                )
-            }
             is NotesEvent.SearchNotes -> {
                 if (event.value.isNullOrEmpty()) {
                     getNotes(NoteOrder.Date(OrderType.Descending))
@@ -79,8 +68,10 @@ class NotesViewModel @Inject constructor(
                         text = event.value
                     )
                 } else {
-                    searchQuery = event.value
-                    getNotes(NoteOrder.Date(OrderType.Descending), searchQuery)
+                    _noteSearch.value = search.value.copy(
+                        text = event.value
+                    )
+                    getNotes(NoteOrder.Date(OrderType.Descending), event.value)
                 }
             }
         }

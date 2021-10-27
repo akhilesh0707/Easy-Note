@@ -32,7 +32,7 @@ fun SettingsScreen(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "Select theme (dark/light)",
+                text = "Dark theme",
                 style = MaterialTheme.typography.h5,
                 color = MaterialTheme.colors.primaryVariant
             )

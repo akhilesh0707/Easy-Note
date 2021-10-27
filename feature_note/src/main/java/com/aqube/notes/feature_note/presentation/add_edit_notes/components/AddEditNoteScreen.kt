@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -19,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.aqube.notes.core.presentation.components.TransparentHintTextField
+import com.aqube.notes.core.presentation.components.TextInputField
 import com.aqube.notes.feature_note.R
 import com.aqube.notes.feature_note.domain.model.Note
 import com.aqube.notes.feature_note.presentation.add_edit_notes.AddEditNoteEvent
@@ -28,6 +29,7 @@ import com.aqube.notes.feature_note.presentation.add_edit_notes.UiEvent
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@ExperimentalComposeUiApi
 @Composable
 fun AddEditNoteScreen(
     navController: NavController,
@@ -112,25 +114,20 @@ fun AddEditNoteScreen(
                 }
             }
             Spacer(modifier = Modifier.height(24.dp))
-            TransparentHintTextField(
-                text = titleState.text,
-                hint = titleState.hint,
-                onValueChange = { viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it)) },
-                onFocusChange = { viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it)) },
-                isHintVisible = titleState.isHintVisible,
-                textStyle = MaterialTheme.typography.h3,
-                singleLine = true
+
+            TextInputField(
+                label = titleState.hint,
+                value = titleState.text,
+                onValueChanged = { viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it)) }
             )
 
             Spacer(modifier = Modifier.height(24.dp))
-            TransparentHintTextField(
-                text = contentState.text,
-                hint = contentState.hint,
-                onValueChange = { viewModel.onEvent(AddEditNoteEvent.EnteredContent(it)) },
-                onFocusChange = { viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it)) },
-                isHintVisible = contentState.isHintVisible,
-                textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxHeight()
+
+            TextInputField(
+                label = contentState.hint,
+                value = contentState.text,
+                singleLine = false,
+                onValueChanged = { viewModel.onEvent(AddEditNoteEvent.EnteredContent(it)) }
             )
         }
     }

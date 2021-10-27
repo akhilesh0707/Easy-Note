@@ -1,6 +1,5 @@
 package com.aqube.notes.feature_note.presentation.notes
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aqube.notes.core.R
-import com.aqube.notes.core.presentation.components.SearchTextField
+import com.aqube.notes.core.presentation.components.TextInputField
 import com.aqube.notes.feature_note.presentation.notes.components.NoteItem
 import com.aqube.notes.feature_note.presentation.notes.components.OrderSection
 import com.aqube.notes.feature_note.presentation.util.Screen
@@ -83,16 +82,11 @@ fun NotesScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                SearchTextField(
-                    text = noteSearchState.text,
-                    hint = noteSearchState.hint,
-                    onValueChange = { viewModel.onEvent(NotesEvent.EnteredSearch(it)) },
-                    onFocusChange = { viewModel.onEvent(NotesEvent.ChangeSearchFocus(it)) },
-                    onTextChange = { viewModel.onEvent(NotesEvent.SearchNotes(it)) },
-                    isHintVisible = noteSearchState.isHintVisible,
-                    textStyle = MaterialTheme.typography.body1,
+                TextInputField(
+                    label = noteSearchState.hint,
+                    value = noteSearchState.text,
                     widthPercentage = 0.85f,
-                    singleLine = true
+                    onValueChanged = { viewModel.onEvent(NotesEvent.SearchNotes(it)) }
                 )
                 IconButton(
                     onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSelection) }
