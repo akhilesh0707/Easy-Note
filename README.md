@@ -1,2 +1,2 @@
 # Easy Note
-Easy Note: Building a Notes app using MVVM, JetPack Compose with a clean architecture approach.
+Easy Note: Notes app using JetPack Compose and MVVM with a clean architecture approach...
