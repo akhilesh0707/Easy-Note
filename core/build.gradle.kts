@@ -37,7 +37,6 @@ dependencies {
     implementation(Compose.viewModelCompose)
     implementation(Compose.hiltNavigationCompose)
 
-
     // DataStore
     implementation(AndroidX.dataStore)
     // Dagger - Hilt
