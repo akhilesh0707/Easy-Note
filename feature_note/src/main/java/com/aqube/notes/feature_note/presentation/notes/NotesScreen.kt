@@ -13,23 +13,24 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.aqube.notes.core.R
+import com.aqube.notes.core.navigation.MainActions
 import com.aqube.notes.core.presentation.components.TextInputField
+import com.aqube.notes.core.presentation.theme.White
+import com.aqube.notes.core.presentation.theme.Yellow600
 import com.aqube.notes.feature_note.presentation.notes.components.NoteItem
 import com.aqube.notes.feature_note.presentation.notes.components.OrderSection
-import com.aqube.notes.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
 fun NotesScreen(
-    navController: NavController,
+    actions: MainActions,
     viewModel: NotesViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
@@ -41,10 +42,15 @@ fun NotesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.navigate(Screen.AddEditNoteScreen.route)
-                }
+                    actions.gotoNoteAddEditNote(-1, -1)
+                },
+                backgroundColor = Yellow600
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add new note")
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = stringResource(id = R.string.add_new_note),
+                    tint = White
+                )
             }
         },
         scaffoldState = scaffoldState
@@ -60,16 +66,16 @@ fun NotesScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "My notes",
+                    text = stringResource(id = R.string.my_notes),
                     style = MaterialTheme.typography.h1,
                 )
                 IconButton(
-                    onClick = { navController.navigate(Screen.SettingsScreen.route) }
+                    onClick = { actions.gotoSettings() }
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_settings),
                         modifier = Modifier.size(26.dp),
-                        contentDescription = "Settings"
+                        contentDescription = stringResource(id = R.string.settings)
                     )
                 }
             }
@@ -93,7 +99,7 @@ fun NotesScreen(
                     Icon(
                         painter = painterResource(R.drawable.ic_filter),
                         modifier = Modifier.size(28.dp),
-                        contentDescription = "Sort"
+                        contentDescription = stringResource(id = R.string.sort)
                     )
                 }
             }
@@ -121,10 +127,7 @@ fun NotesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                navController.navigate(
-                                    Screen.AddEditNoteScreen.route +
-                                            "?noteId=${note.id}&noteColor=${note.color}"
-                                )
+                                actions.gotoNoteAddEditNote(note.id!!, note.color)
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))

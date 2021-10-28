@@ -1,4 +1,4 @@
-package com.aqube.notes.feature_note.presentation.util
+package com.aqube.notes.core.navigation
 
 sealed class Screen(val route: String) {
     object NotesScreen : Screen("note_screen")

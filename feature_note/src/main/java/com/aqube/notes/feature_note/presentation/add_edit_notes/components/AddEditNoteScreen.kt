@@ -6,7 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -17,10 +20,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aqube.notes.core.presentation.components.TextInputField
+import com.aqube.notes.core.presentation.theme.White
+import com.aqube.notes.core.presentation.theme.Yellow600
 import com.aqube.notes.feature_note.R
 import com.aqube.notes.feature_note.domain.model.Note
 import com.aqube.notes.feature_note.presentation.add_edit_notes.AddEditNoteEvent
@@ -32,7 +38,7 @@ import kotlinx.coroutines.launch
 @ExperimentalComposeUiApi
 @Composable
 fun AddEditNoteScreen(
-    navController: NavController,
+    upPress: () -> Unit,
     noteColor: Int,
     viewModel: AddEditNoteViewModel = hiltViewModel()
 ) {
@@ -49,7 +55,7 @@ fun AddEditNoteScreen(
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
                 is UiEvent.SaveNote -> {
-                    navController.navigateUp()
+                    upPress()
                 }
                 is UiEvent.ShowSnackBar -> {
                     scaffoldState.snackbarHostState.showSnackbar(message = event.message)
@@ -64,12 +70,13 @@ fun AddEditNoteScreen(
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
-                backgroundColor = MaterialTheme.colors.primary
+                backgroundColor = Yellow600
             ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_save),
                     modifier = Modifier.size(24.dp),
-                    contentDescription = "Save note"
+                    contentDescription = stringResource(id = R.string.add_update_note),
+                    tint = White
                 )
             }
         },

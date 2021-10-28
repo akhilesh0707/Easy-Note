@@ -33,6 +33,10 @@ dependencies {
     implementation(Compose.material)
     implementation(Compose.toolingPreview)
     implementation(Compose.materialIconExtended)
+    implementation(Compose.navigationCompose)
+    implementation(Compose.viewModelCompose)
+    implementation(Compose.hiltNavigationCompose)
+
 
     // DataStore
     implementation(AndroidX.dataStore)

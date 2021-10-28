@@ -3,4 +3,9 @@
     <string name="label_dark_mode">Dark mode</string>
     <string name="label_light_mode">Light mode</string>
     <string name="search_label">Search note</string>
+    <string name="add_update_note">Add Edit Note</string>
+    <string name="add_new_note">Add new note</string>
+    <string name="settings">Settings</string>
+    <string name="my_notes">My notes</string>
+    <string name="sort">Sort notes</string>
 </resources>

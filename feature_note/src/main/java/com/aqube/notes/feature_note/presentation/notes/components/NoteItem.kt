@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
 import com.aqube.notes.core.R
+import com.aqube.notes.core.presentation.theme.PaleBlack
 import com.aqube.notes.feature_note.domain.model.Note
 
 @Composable
@@ -63,7 +64,7 @@ fun NoteItem(
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.h3,
-                color = MaterialTheme.colors.onSurface,
+                color = PaleBlack,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -71,7 +72,7 @@ fun NoteItem(
             Text(
                 text = note.content,
                 style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.onSurface,
+                color = PaleBlack,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )

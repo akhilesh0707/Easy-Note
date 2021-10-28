@@ -2,6 +2,8 @@ package com.aqube.notes.core.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
+val Yellow600 = Color(0xFFfdb100)
+val Yellow700 = Color(0xFFfd9e00)
 
 val White = Color(0xffffffff)
 val Black = Color(0xff000000)

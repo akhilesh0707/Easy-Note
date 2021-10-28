@@ -95,4 +95,7 @@ dependencies {
 
     // Kotlin Extensions and Coroutines support for Room
     implementation(Room.roomKtx)
+
+    // Accompanist Navigation
+    implementation(Compose.accompanistNavAnimation)
 }

@@ -8,15 +8,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.aqube.notes.core.presentation.components.DarkModeToggleButton
 
 @Composable
 fun SettingsScreen(
-    navController: NavController,
-    viewModel: SettingsViewModel = hiltViewModel(),
     darkTheme: Boolean,
-    onToggleTheme: (Boolean) -> Unit
+    onToggleTheme: (Boolean) -> Unit,
+    upPress: () -> Unit,
+    viewModel: SettingsViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier
