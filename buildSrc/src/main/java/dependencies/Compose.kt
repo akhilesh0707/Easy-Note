@@ -23,4 +23,8 @@ object Compose {
     private const val hiltNavigationComposeVersion = "1.0.0-alpha03"
     const val hiltNavigationCompose =
         "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
+
+    private const val accompanistNavAnimationVersion = "0.19.0"
+    const val accompanistNavAnimation =
+        "com.google.accompanist:accompanist-navigation-animation:$accompanistNavAnimationVersion"
 }
