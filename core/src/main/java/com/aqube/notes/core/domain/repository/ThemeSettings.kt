@@ -1,9 +1,8 @@
 package com.aqube.notes.core.domain.repository
 
-import com.aqube.notes.core.domain.model.AppTheme
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
 interface ThemeSettings {
-    val themeStream: StateFlow<AppTheme>
-    var theme: AppTheme
+    val uiTheme: Flow<Boolean>
+    suspend fun saveToDataStore(isNightMode: Boolean)
 }

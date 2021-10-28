@@ -34,6 +34,8 @@ dependencies {
     implementation(Compose.toolingPreview)
     implementation(Compose.materialIconExtended)
 
+    // DataStore
+    implementation(AndroidX.dataStore)
     // Dagger - Hilt
     implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltAndroidCompiler)

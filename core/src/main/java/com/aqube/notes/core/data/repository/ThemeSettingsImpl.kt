@@ -1,43 +1,33 @@
 package com.aqube.notes.core.data.repository
 
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.core.content.edit
-import com.aqube.notes.core.domain.model.AppTheme
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import com.aqube.notes.core.data.data_source.PreferenceDataStore
 import com.aqube.notes.core.domain.repository.ThemeSettings
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
 
 class ThemeSettingsImpl @Inject constructor(
     @ApplicationContext context: Context
-) : ThemeSettings {
+) : PreferenceDataStore(context = context, PREF_FILE_UI_THEME), ThemeSettings {
 
-    override val themeStream: MutableStateFlow<AppTheme>
-    override var theme: AppTheme by AppThemePreferenceDelegate("theme", AppTheme.MODE_AUTO)
-
-    private val preferences: SharedPreferences =
-        context.getSharedPreferences("app_theme", Context.MODE_PRIVATE)
-
-    init {
-        themeStream = MutableStateFlow(theme)
+    companion object {
+        private const val PREF_FILE_UI_THEME = "ui_theme_preference"
+        private val UI_THEME_KEY = booleanPreferencesKey("ui_theme")
     }
 
-    inner class AppThemePreferenceDelegate(
-        private val name: String,
-        private val default: AppTheme,
-    ) : ReadWriteProperty<Any?, AppTheme> {
+    override val uiTheme: Flow<Boolean>
+        get() = dataStore.data.map { pref ->
+            val uiTheme = pref[UI_THEME_KEY] ?: false
+            uiTheme
+        }
 
-        override fun getValue(thisRef: Any?, property: KProperty<*>): AppTheme =
-            AppTheme.fromOrdinal(preferences.getInt(name, default.ordinal))
-
-        override fun setValue(thisRef: Any?, property: KProperty<*>, value: AppTheme) {
-            themeStream.value = value
-            preferences.edit {
-                putInt(name, value.ordinal)
-            }
+    override suspend fun saveToDataStore(isNightMode: Boolean) {
+        dataStore.edit { mutablePref ->
+            mutablePref[UI_THEME_KEY] = isNightMode
         }
     }
 }
