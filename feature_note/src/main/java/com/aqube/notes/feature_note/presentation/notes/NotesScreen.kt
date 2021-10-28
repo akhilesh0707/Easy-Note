@@ -1,6 +1,8 @@
 package com.aqube.notes.feature_note.presentation.notes
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -106,8 +108,13 @@ fun NotesScreen(
 
             AnimatedVisibility(
                 visible = state.isOrderSectionVisible,
-                enter = fadeIn() + slideInVertically(),
-                exit = fadeOut() + slideOutVertically(),
+                enter = fadeIn() + slideInVertically(
+                    initialOffsetY = { -50 }, animationSpec =
+                    tween(
+                        durationMillis = 300,
+                    )
+
+                ),
             ) {
                 OrderSection(
                     modifier = Modifier

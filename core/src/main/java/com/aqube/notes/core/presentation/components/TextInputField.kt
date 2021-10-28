@@ -10,6 +10,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 
@@ -20,6 +21,7 @@ fun TextInputField(
     value: String,
     widthPercentage: Float = 1f,
     singleLine: Boolean = true,
+    color: Color = MaterialTheme.colors.onPrimary,
     onValueChanged: (String) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -31,7 +33,7 @@ fun TextInputField(
         onValueChange = {
             onValueChanged(it)
         },
-        label = { LabelView(title = label) },
+        label = { LabelView(title = label, color = color) },
         textStyle = typography.body1,
         singleLine = singleLine,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -41,11 +43,12 @@ fun TextInputField(
             }
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colors.onPrimary,
-            unfocusedBorderColor = MaterialTheme.colors.onPrimary,
-            focusedLabelColor = MaterialTheme.colors.onPrimary,
-            cursorColor = MaterialTheme.colors.onPrimary
-        )
+            focusedBorderColor = color,
+            unfocusedBorderColor = color,
+            focusedLabelColor = color,
+            cursorColor = color,
+            textColor = color,
+        ),
     )
 
 }

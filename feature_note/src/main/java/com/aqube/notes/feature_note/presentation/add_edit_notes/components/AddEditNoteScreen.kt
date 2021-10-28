@@ -23,8 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.aqube.notes.core.presentation.components.TextInputField
+import com.aqube.notes.core.presentation.theme.PaleBlack
 import com.aqube.notes.core.presentation.theme.White
 import com.aqube.notes.core.presentation.theme.Yellow600
 import com.aqube.notes.feature_note.R
@@ -125,6 +125,7 @@ fun AddEditNoteScreen(
             TextInputField(
                 label = titleState.hint,
                 value = titleState.text,
+                color = PaleBlack,
                 onValueChanged = { viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it)) }
             )
 
@@ -133,6 +134,7 @@ fun AddEditNoteScreen(
             TextInputField(
                 label = contentState.hint,
                 value = contentState.text,
+                color = PaleBlack,
                 singleLine = false,
                 onValueChanged = { viewModel.onEvent(AddEditNoteEvent.EnteredContent(it)) }
             )
