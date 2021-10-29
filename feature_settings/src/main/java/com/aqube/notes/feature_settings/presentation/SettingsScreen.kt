@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aqube.notes.core.presentation.components.DarkModeToggleButton
@@ -43,4 +44,10 @@ fun SettingsScreen(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun ComposablePreview() {
+    SettingsScreen(darkTheme = true,onToggleTheme = { },{})
 }
