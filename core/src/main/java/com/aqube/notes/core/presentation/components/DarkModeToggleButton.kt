@@ -1,6 +1,5 @@
 package com.aqube.notes.core.presentation.components
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
@@ -20,12 +19,11 @@ import com.aqube.notes.core.R
 fun DarkModeToggleButton(
     darkMode: Boolean,
     onDarkModeChanged: (Boolean) -> Unit,
-    modifier: Modifier
 ) {
     IconButton(onClick = { onDarkModeChanged(!darkMode) }) {
         val color by animateColorAsState(targetValue = MaterialTheme.colors.onSurface)
         val iconModifier = Modifier.size(24.dp)
-        val value = when (darkMode) {
+        when (darkMode) {
             true -> Icon(
                 Icons.Default.LightMode,
                 stringResource(R.string.label_light_mode),
