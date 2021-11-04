@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.aqube.notes.core.R
 import com.aqube.notes.core.presentation.theme.NoteAppTheme
+import com.aqube.notes.core.util.getVersionName
 import com.aqube.notes.feature_settings.presentation.components.SettingsItem
 import com.aqube.notes.feature_settings.presentation.components.SettingsSection
 import com.aqube.notes.feature_settings.presentation.components.theme.ThemeItem
@@ -31,14 +32,9 @@ fun SettingsScreen(
     ) {
         item { SettingsSection(title = "Settings") }
         item {
-            ThemeItem(
-                label = "Dark theme",
-                isChecked = darkTheme,
-                onToggledChanged = onToggleTheme
-            )
+            ThemeItem(label = "Dark theme", isChecked = darkTheme, onToggledChanged = onToggleTheme)
         }
-        /*  item { VersionRow(label = "Application version", context.getVersionName()) }*/
-        item { VersionItem(label = "App version", "1.2.0") }
+        item { VersionItem(label = "App version", context.getVersionName()) }
         item { SettingsSection(title = "Profiles") }
         item { SettingsItem("LinkedIn", painterResource(R.drawable.ic_linkedin), {}, {}) }
         item { SettingsItem("Stackoverflow", painterResource(R.drawable.ic_stackoverflow), {}, {}) }

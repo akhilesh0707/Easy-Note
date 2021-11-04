@@ -16,7 +16,7 @@ fun ThemeItem(
     onToggledChanged: (Boolean) -> Unit,
 ) {
     SettingsItem(label = label,
-        icon = painterResource(R.drawable.ic_linkedin),
+        icon = painterResource(R.drawable.ic_theme),
         content = { ThemeSwitch(isChecked = isChecked, onToggledChanged = onToggledChanged) }
     ) {
 

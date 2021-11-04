@@ -17,7 +17,7 @@ fun VersionItem(
 ) {
     SettingsItem(
         label = label,
-        icon = painterResource(R.drawable.ic_linkedin),
+        icon = painterResource(R.drawable.ic_phone),
         content = {
             AppVersionNumber(appVersion = appVersion)
         }
