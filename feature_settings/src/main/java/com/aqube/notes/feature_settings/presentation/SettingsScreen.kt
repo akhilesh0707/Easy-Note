@@ -7,13 +7,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.aqube.notes.core.R
 import com.aqube.notes.core.presentation.components.LabelView
 import com.aqube.notes.core.presentation.theme.NoteAppTheme
-import com.aqube.notes.core.util.getVersionName
+import com.aqube.notes.feature_settings.presentation.components.SettingsRow
 import com.aqube.notes.feature_settings.presentation.components.theme.DarkThemeRow
-import com.aqube.notes.feature_settings.presentation.components.version.VersionRow
 
 @Composable
 fun SettingsScreen(
@@ -35,12 +36,13 @@ fun SettingsScreen(
                 onToggleTheme = onToggleTheme
             )
         }
-        item { VersionRow(label = "Application version", context.getVersionName()) }
+        /*  item { VersionRow(label = "Application version", context.getVersionName()) }*/
         item { LabelView(title = "Profiles") }
-        item { LabelView(title = "LinkedIn") }
-        item { LabelView(title = "Stackoverflow") }
-        item { LabelView(title = "Github") }
+        item { SettingsRow("LinkedIn", painterResource(R.drawable.ic_linkedin)) }
+        item { SettingsRow("Stackoverflow", painterResource(R.drawable.ic_stackoverflow)) }
+        item { SettingsRow("Github", painterResource(R.drawable.ic_github)) }
     }
+
 
 }
 
