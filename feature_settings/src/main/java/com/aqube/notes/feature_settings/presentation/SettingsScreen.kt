@@ -11,10 +11,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.aqube.notes.core.R
-import com.aqube.notes.core.presentation.components.LabelView
 import com.aqube.notes.core.presentation.theme.NoteAppTheme
-import com.aqube.notes.feature_settings.presentation.components.SettingsRow
-import com.aqube.notes.feature_settings.presentation.components.theme.DarkThemeRow
+import com.aqube.notes.feature_settings.presentation.components.SettingsItem
+import com.aqube.notes.feature_settings.presentation.components.SettingsSection
+import com.aqube.notes.feature_settings.presentation.components.theme.ThemeItem
+import com.aqube.notes.feature_settings.presentation.components.version.VersionItem
 
 @Composable
 fun SettingsScreen(
@@ -28,22 +29,21 @@ fun SettingsScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        item { LabelView(title = "Settings") }
+        item { SettingsSection(title = "Settings") }
         item {
-            DarkThemeRow(
+            ThemeItem(
                 label = "Dark theme",
-                darkTheme = darkTheme,
-                onToggleTheme = onToggleTheme
+                isChecked = darkTheme,
+                onToggledChanged = onToggleTheme
             )
         }
         /*  item { VersionRow(label = "Application version", context.getVersionName()) }*/
-        item { LabelView(title = "Profiles") }
-        item { SettingsRow("LinkedIn", painterResource(R.drawable.ic_linkedin)) }
-        item { SettingsRow("Stackoverflow", painterResource(R.drawable.ic_stackoverflow)) }
-        item { SettingsRow("Github", painterResource(R.drawable.ic_github)) }
+        item { VersionItem(label = "App version", "1.2.0") }
+        item { SettingsSection(title = "Profiles") }
+        item { SettingsItem("LinkedIn", painterResource(R.drawable.ic_linkedin), {}, {}) }
+        item { SettingsItem("Stackoverflow", painterResource(R.drawable.ic_stackoverflow), {}, {}) }
+        item { SettingsItem("Github", painterResource(R.drawable.ic_github), {}, {}) }
     }
-
-
 }
 
 @Preview(name = "Preview", group = "Size")
