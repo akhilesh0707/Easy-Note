@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="label_dark_mode">Dark mode</string>
-    <string name="label_light_mode">Light mode</string>
     <string name="search_label">Search note</string>
     <string name="add_update_note">Add Edit Note</string>
     <string name="add_new_note">Add new note</string>
     <string name="settings">Settings</string>
     <string name="my_notes">My notes</string>
     <string name="sort">Sort notes</string>
+    <string name="label_app_version">App version</string>
+    <string name="label_profiles">Profiles</string>
+    <string name="label_linkedin">LinkedIn</string>
+    <string name="label_linkedin_profile">https://www.linkedin.com/in/akhilesh0707/</string>
+    <string name="label_stackoverflow">Stackoverflow</string>
+    <string name="label_stackoverflow_profile">https://stackoverflow.com/users/1548824/akhilesh0707</string>
+    <string name="label_github">Github</string>
+    <string name="label_github_profile">https://github.com/akhilesh0707</string>
 </resources>
