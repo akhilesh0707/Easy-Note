@@ -7,47 +7,54 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.aqube.notes.core.R
 
 @Composable
-fun SettingsRow(
+fun SettingsItem(
     label: String,
-    icon: Painter
-
+    icon: Painter,
+    content: @Composable() () -> Unit,
+    itemClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 8.dp)
+            .height(60.dp)
     ) {
-        Box(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .fillMaxHeight()
+                .padding(top = 4.dp, bottom = 4.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colors.secondary)
+                .background(MaterialTheme.colors.secondary),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
+
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
+                modifier = Modifier.padding(start = 8.dp, end = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     painter = icon,
-                    modifier = Modifier.size(26.dp),
-                    contentDescription = stringResource(id = R.string.settings)
+                    modifier = Modifier
+                        .size(26.dp),
+                    contentDescription = label
                 )
                 Text(
+                    modifier = Modifier.padding(start = 8.dp),
                     text = label,
                     style = MaterialTheme.typography.h5,
                     color = MaterialTheme.colors.onPrimary
                 )
 
             }
+            content()
         }
     }
 }
