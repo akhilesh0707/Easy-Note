@@ -1,8 +1,6 @@
 package com.aqube.notes.core.presentation.components
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
 import androidx.compose.material.RadioButtonDefaults
@@ -20,10 +18,12 @@ fun DefaultRadioButton(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.height(26.dp).wrapContentWidth(),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         RadioButton(
+            modifier = Modifier.padding(start = 0.dp),
             selected = selected,
             onClick = onSelect,
             colors = RadioButtonDefaults.colors(
@@ -31,7 +31,6 @@ fun DefaultRadioButton(
                 unselectedColor = MaterialTheme.colors.onPrimary
             )
         )
-        Spacer(modifier = Modifier.width(8.dp))
         Text(text = text, style = MaterialTheme.typography.body1)
     }
 }

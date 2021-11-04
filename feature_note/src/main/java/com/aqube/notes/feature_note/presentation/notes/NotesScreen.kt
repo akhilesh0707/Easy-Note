@@ -1,8 +1,10 @@
 package com.aqube.notes.feature_note.presentation.notes
 
-import androidx.compose.animation.*
-import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -76,7 +78,7 @@ fun NotesScreen(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_settings),
-                        modifier = Modifier.size(26.dp),
+                        modifier = Modifier.size(24.dp),
                         contentDescription = stringResource(id = R.string.settings)
                     )
                 }
@@ -100,7 +102,7 @@ fun NotesScreen(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_filter),
-                        modifier = Modifier.size(28.dp),
+                        modifier = Modifier.size(26.dp),
                         contentDescription = stringResource(id = R.string.sort)
                     )
                 }
@@ -119,7 +121,7 @@ fun NotesScreen(
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                        .padding(top = 16.dp),
                     noteOrder = state.noteOrder,
                     onOrderChange = {
                         viewModel.onEvent(NotesEvent.Order(it))
