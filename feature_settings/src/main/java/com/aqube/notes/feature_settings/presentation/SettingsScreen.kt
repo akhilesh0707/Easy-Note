@@ -25,9 +25,8 @@ fun SettingsScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-
-        ) {
+            .padding(16.dp)
+    ) {
         item { LabelView(title = "Settings") }
         item {
             DarkThemeRow(
@@ -37,6 +36,10 @@ fun SettingsScreen(
             )
         }
         item { VersionRow(label = "Application version", context.getVersionName()) }
+        item { LabelView(title = "Profiles") }
+        item { LabelView(title = "LinkedIn") }
+        item { LabelView(title = "Stackoverflow") }
+        item { LabelView(title = "Github") }
     }
 
 }
