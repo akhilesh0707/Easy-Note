@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.aqube.notes.core.R
-import com.aqube.notes.core.presentation.theme.NoteAppTheme
 import com.aqube.notes.core.util.getVersionName
+import com.aqube.notes.core.util.openWebPage
 import com.aqube.notes.feature_settings.presentation.components.SettingsItem
 import com.aqube.notes.feature_settings.presentation.components.SettingsSection
 import com.aqube.notes.feature_settings.presentation.components.theme.ThemeItem
@@ -30,22 +30,42 @@ fun SettingsScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        item { SettingsSection(title = "Settings") }
+        item { SettingsSection(title = stringResource(id = R.string.settings)) }
         item {
-            ThemeItem(label = "Dark theme", isChecked = darkTheme, onToggledChanged = onToggleTheme)
+            ThemeItem(
+                label = stringResource(id = R.string.label_dark_mode),
+                isChecked = darkTheme,
+                onToggledChanged = onToggleTheme
+            )
         }
-        item { VersionItem(label = "App version", context.getVersionName()) }
-        item { SettingsSection(title = "Profiles") }
-        item { SettingsItem("LinkedIn", painterResource(R.drawable.ic_linkedin), {}, {}) }
-        item { SettingsItem("Stackoverflow", painterResource(R.drawable.ic_stackoverflow), {}, {}) }
-        item { SettingsItem("Github", painterResource(R.drawable.ic_github), {}, {}) }
-    }
-}
-
-@Preview(name = "Preview", group = "Size")
-@Composable
-fun SettingsPreview() {
-    NoteAppTheme() {
-        SettingsScreen(darkTheme = false, onToggleTheme = { }, {}, LocalContext.current)
+        item {
+            val label = stringResource(id = R.string.label_app_version)
+            VersionItem(label = label, appVersion = context.getVersionName())
+        }
+        item { SettingsSection(title = stringResource(id = R.string.label_profiles)) }
+        item {
+            val label = stringResource(id = R.string.label_linkedin)
+            val icon = painterResource(R.drawable.ic_linkedin)
+            val url = stringResource(id = R.string.label_linkedin_profile)
+            SettingsItem(label = label, icon = icon, {}) {
+                context.openWebPage(url)
+            }
+        }
+        item {
+            val label = stringResource(id = R.string.label_stackoverflow)
+            val icon = painterResource(R.drawable.ic_stackoverflow)
+            val url = stringResource(id = R.string.label_stackoverflow_profile)
+            SettingsItem(label = label, icon = icon, {}) {
+                context.openWebPage(url)
+            }
+        }
+        item {
+            val label = stringResource(id = R.string.label_github)
+            val icon = painterResource(id = R.drawable.ic_github)
+            val url = stringResource(id = R.string.label_github_profile)
+            SettingsItem(label = label, icon = icon, content = {}) {
+                context.openWebPage(url)
+            }
+        }
     }
 }
