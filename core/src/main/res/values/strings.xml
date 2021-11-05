@@ -7,6 +7,12 @@
     <string name="settings">Settings</string>
     <string name="my_notes">My notes</string>
     <string name="sort">Sort notes</string>
+    <string name="label_delete_note">Delete note</string>
+    <string name="label_filter_title">Title</string>
+    <string name="label_filter_date">Date</string>
+    <string name="label_filter_color">Color</string>
+    <string name="label_filter_ascending">Ascending</string>
+    <string name="label_filter_descending">Descending</string>
     <string name="label_app_version">App version</string>
     <string name="label_profiles">Profiles</string>
     <string name="label_linkedin">LinkedIn</string>
