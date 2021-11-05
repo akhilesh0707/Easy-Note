@@ -19,12 +19,7 @@ fun ScaffoldWithFAB(
 ) {
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    onClick()
-                },
-                backgroundColor = Yellow600
-            ) {
+            FloatingActionButton(onClick = { onClick() }, backgroundColor = Yellow600) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = icon,
