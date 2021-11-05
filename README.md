@@ -35,7 +35,7 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 * **presentation** - MVVM with ViewModels exposing LiveData that the UI consume. The ViewModel does not know anything about it's consumers. (Android module that **can only access domain module**)
 
 ## MAD Scorecard
-[<img src="art/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/1519405986/)
+[<img src="art/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/1096658178/)
 
 ## Tech stack - Library:
 
