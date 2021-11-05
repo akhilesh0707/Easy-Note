@@ -18,9 +18,7 @@ fun ThemeItem(
     SettingsItem(label = label,
         icon = painterResource(R.drawable.ic_theme),
         content = { ThemeSwitch(isChecked = isChecked, onToggledChanged = onToggledChanged) }
-    ) {
-
-    }
+    ) {}
 }
 
 @Composable

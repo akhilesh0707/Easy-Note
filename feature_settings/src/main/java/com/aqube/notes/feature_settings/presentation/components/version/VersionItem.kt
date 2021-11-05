@@ -22,9 +22,7 @@ fun VersionItem(
         content = {
             AppVersionNumber(appVersion = appVersion)
         }
-    ) {
-
-    }
+    ) {}
 }
 
 @Composable

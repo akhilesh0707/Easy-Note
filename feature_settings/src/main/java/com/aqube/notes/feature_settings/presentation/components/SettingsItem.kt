@@ -26,17 +26,17 @@ fun SettingsItem(
         modifier = Modifier
             .fillMaxSize()
             .height(60.dp)
-            .clickable {
-                itemClick()
-            }
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
                 .padding(top = 4.dp, bottom = 4.dp)
+                .fillMaxHeight()
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colors.primaryVariant),
+                .background(MaterialTheme.colors.primaryVariant)
+                .clickable {
+                    itemClick()
+                },
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
