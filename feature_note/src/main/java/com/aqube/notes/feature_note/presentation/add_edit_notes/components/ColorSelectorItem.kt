@@ -26,11 +26,7 @@ fun ColorSelectorItem(
 ) {
     val scope = rememberCoroutineScope()
 
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
-    )
-    {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         Note.noteColors.forEach { color ->
             val colorInt = color.toArgb()
             Box(
@@ -55,7 +51,6 @@ fun ColorSelectorItem(
                         viewModel.onEvent(AddEditNoteEvent.ChangeColor(colorInt))
                     }
             )
-
         }
     }
 }

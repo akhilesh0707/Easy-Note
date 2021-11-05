@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -83,7 +84,7 @@ fun NoteItem(
                 painter = painterResource(R.drawable.ic_delete),
                 tint = Color.DarkGray,
                 modifier = Modifier.size(20.dp),
-                contentDescription = "Delete note"
+                contentDescription = stringResource(id = R.string.label_delete_note)
             )
         }
 
