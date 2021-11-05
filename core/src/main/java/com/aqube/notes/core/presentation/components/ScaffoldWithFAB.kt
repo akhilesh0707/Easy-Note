@@ -1,10 +1,7 @@
 package com.aqube.notes.core.presentation.components
 
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -33,6 +30,16 @@ fun ScaffoldWithFAB(
                     painter = icon,
                     contentDescription = label,
                     tint = White
+                )
+            }
+        },
+        snackbarHost = {
+            SnackbarHost(it) { data ->
+                Snackbar(
+                    actionColor = Yellow600,
+                    contentColor = MaterialTheme.colors.onPrimary,
+                    backgroundColor = MaterialTheme.colors.primaryVariant,
+                    snackbarData = data
                 )
             }
         },
