@@ -57,7 +57,7 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 - [ ] Ktlint or Detekt
 
 ## Reference repository
--This repository code is mostly inspired by [Android-Clean-Architecture-Boilerplate](https://github.com/bufferapp/android-clean-architecture-boilerplate).
+- This repository code is mostly inspired by [Android-Clean-Architecture-Boilerplate](https://github.com/bufferapp/android-clean-architecture-boilerplate).
 - Thanks, Philipp Lackner for the excellent tutorial video [Youtube](https://www.youtube.com/watch?v=8YPXv7xKh2w&ab_channel=PhilippLackner) 
 
 ## Find this repository useful? :heart:
