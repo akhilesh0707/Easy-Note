@@ -42,12 +42,20 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 - [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) - Flow is used to pass (send) a stream of data that can be computed asynchronously
 - [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - for dependency injection.
 - [Kotlin-DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Used to handle gradle dependencies and config versions
+- Compose
+    * [Compose Material Components](https://mvnrepository.com/artifact/androidx.compose.material/material)
+    * [Compose UI Primitives](https://developer.android.com/jetpack/androidx/releases/compose-ui)
+    * [Compose tooling](https://developer.android.com/jetpack/compose/tooling)
+    * [Material Icons Extended by Infragistics](https://github.com/IgniteUI/material-icons-extended)
+    * [Compose Layouts](https://mvnrepository.com/artifact/androidx.compose.foundation/foundation-layout)
+    * [ConstraintLayout Compose](https://developer.android.com/jetpack/androidx/releases/constraintlayout)
+    * [Paging Compose](https://developer.android.com/jetpack/androidx/releases/paging)
 - JetPack
-  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - For reactive style programming (from VM to UI). 
-  - [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Used get lifecyle event of an activity or fragment and performs some action in response to change
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes. 
-  - [Room](https://developer.android.com/topic/libraries/architecture/room) - Used to create room db and store the data.
-  - [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) - Used to navigate between fragments
+  * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - For reactive style programming (from VM to UI). 
+  * [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Used get lifecyle event of an activity or fragment and performs some action in response to change
+  * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes. 
+  * [Room](https://developer.android.com/topic/libraries/architecture/room) - Used to create room db and store the data.
+  * [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) - Used to navigate between fragments
 - [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView.
 
 ## TODO
