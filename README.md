@@ -11,6 +11,7 @@ This app shows the usage of the new Navigation Architecture Component in collabo
 - List of Notes
 - Add Edit Notes
 - Delete Notes
+- Search, Filter Notes
 - Light/ Dark theme.
 - Custom font.
 
