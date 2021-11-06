@@ -10,13 +10,20 @@
         <entry key="app/src/main/res/drawable/ic_notes_white.xml" value="0.3671875" />
         <entry key="app/src/main/res/drawable/ic_noun_note.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_svg.xml" value="0.3671875" />
+        <entry key="app/src/main/res/drawable/ic_white.xml" value="0.3671875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3671875" />
+        <entry key="core/src/main/res/drawable/ic_add.xml" value="0.3671875" />
         <entry key="core/src/main/res/drawable/ic_cross.xml" value="0.3671875" />
         <entry key="core/src/main/res/drawable/ic_delete.xml" value="0.3671875" />
         <entry key="core/src/main/res/drawable/ic_filter.xml" value="0.3671875" />
+        <entry key="core/src/main/res/drawable/ic_github.xml" value="0.36153846153846153" />
+        <entry key="core/src/main/res/drawable/ic_linkedin.xml" value="0.36153846153846153" />
         <entry key="core/src/main/res/drawable/ic_save.xml" value="0.3671875" />
         <entry key="core/src/main/res/drawable/ic_serach.xml" value="0.3671875" />
+        <entry key="core/src/main/res/drawable/ic_settings.xml" value="0.3388888888888889" />
+        <entry key="core/src/main/res/drawable/ic_stackoverflow.xml" value="0.36153846153846153" />
+        <entry key="core/src/main/res/drawable/ic_theme.xml" value="0.35555555555555557" />
         <entry key="feature_note/src/main/res/drawable/ic_delete.xml" value="0.3671875" />
       </map>
     </option>

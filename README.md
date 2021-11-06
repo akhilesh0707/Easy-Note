@@ -16,7 +16,7 @@ This app shows the usage of the new Navigation Architecture Component in collabo
 - Custom font.
 
 ## Screenshots
-<img alt="List" src="art/screenshot_new.png">
+<img alt="List" src="art/screenshot.png">
 
 ## Architecture
 Uses concepts of the notorious Uncle Bob's architecture called [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).</br>
