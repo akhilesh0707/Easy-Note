@@ -17,6 +17,8 @@ This app shows the usage of the new Navigation Architecture Component in collabo
 
 ## Screenshots
 <img alt="List" src="art/screenshot.png">
+ - Video
+<img alt="List" src="art/note_app.gif">
 
 ## Architecture
 Uses concepts of the notorious Uncle Bob's architecture called [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).</br>
