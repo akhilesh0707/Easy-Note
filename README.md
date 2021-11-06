@@ -17,7 +17,9 @@ This app shows the usage of the new Navigation Architecture Component in collabo
 
 ## Screenshots
 <img alt="List" src="art/screenshot.png">
-**Demo** 
+
+Demo 
+
 <img alt="List" src="art/note_app.gif" width="30%">
 
 ## Architecture
